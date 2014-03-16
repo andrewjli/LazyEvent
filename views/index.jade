@@ -4,28 +4,9 @@ block content
   .container.theme-showcase
       // Main jumbotron for a primary marketing message or call to action
       .jumbotron
-        if !loggedIn
-          h1 Welcome to #{title}!
-        else
-          h1 You have succesfully logged in to Facebook!
-
+        h1 Welcome to #{title}!
         p
-          | Welcome to #{title}! Your Facebook Secretary!
-
-        ul
-          each user in users
-            li
-              = user.fbuserid
-            li
-              = user.fullname
-            li
-              = user.firstname
-            li
-              = user.surname
-
-        if !loggedIn
-          p
-            a(href='/auth/facebook').btn.btn-primary.btn-lg Sign in with Facebook »
+          a(href='/auth/facebook').btn.btn-primary.btn-lg Sign in with Facebook »
 
 
 block welcome

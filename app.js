@@ -39,6 +39,7 @@ app.use(express.cookieParser('secret'));
 app.use(require('stylus').middleware(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(app.router);
+app.use('/static/img/', express.static(__dirname + '/static/img/'));
 
 app.get('/', routes.index);
 app.get('/success', success.program);
@@ -102,7 +103,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-db.sequelize.sync().complete(function(err) {
+/*db.sequelize.sync().complete(function(err) {
   if (err) {
     throw err;
   } else {
@@ -111,4 +112,7 @@ db.sequelize.sync().complete(function(err) {
     });
   }
 });
-
+*/
+http.createServer(app).listen(app.get('port'), function(){
+      debug('Express server listening on port ' + app.get('port'));
+    });

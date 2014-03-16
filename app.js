@@ -26,16 +26,17 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(express.cookieParser('secret'));
-//app.use(express.session());
+app.use(express.cookieParser());
+app.use(express.session({ secret: 'secret' }));
 app.use(require('stylus').middleware(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'static')));
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 
 app.get('/', routes.index);
@@ -65,9 +66,11 @@ if (app.get('env') === 'development') {
 passport.use(new FacebookStrategy({
   clientID: FACEBOOK_APP_ID,
   clientSecret: FACEBOOK_APP_SECRET,
-  callbackURL: 'http://lazyevent.herokuapp.com/auth/facebook/callback'
+  callbackURL: 'http://localhost:3000/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
   process.nextTick(function() {
+    //console.log(accessToken);
+    //console.log(profile);
     //Assuming user exists
     done(null, profile);
   });

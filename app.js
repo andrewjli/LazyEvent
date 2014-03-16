@@ -76,7 +76,23 @@ passport.use(new FacebookStrategy({
     //console.log(accessToken);
     //console.log(profile);
     //Assuming user exists
-    done(null, profile);
+    db.User.find({ where: { fbuserid: profile.id } })
+    .complete(function(err, exists) {
+      if (!!err) {
+        console.log('An error occurred while searching for John:', err)
+      } else if (!exists) {
+        db.User.create({
+            fbuserid: profile.id,
+            fullname: profile.displayName,
+            firstname: profile.name.givenName,
+            surname: profile.name.familyName,
+          }).success(function() {
+          done(null, profile);
+        });
+      } else {
+        done(null, profile);
+      }
+    });
   });
 }));
 
@@ -105,7 +121,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-db.sequelize.sync().complete(function(err) {
+db.sequelize.sync({force: true}).complete(function(err) {
   if (err) {
     throw err;
   } else {

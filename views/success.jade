@@ -8,11 +8,11 @@ block content
         p
           | Welcome to #{title}! Your Facebook Secretary!
       #fb-root
-  script
+  script(type='text/javascript')
       window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1474914229386934', // App ID
-        channelUrl : 'https://57757728.ngrok.com', // Channel File
+        appId      : '470267856432810', // App ID
+        channelUrl : 'https://lazyevent.herokuapp.com/', // Channel File
         status     : true, // check login status
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
@@ -58,7 +58,7 @@ block content
           console.log('Good to see you, ' + response.name + '.');
         });
       }
-      
+
         // Load the SDK Asynchronously
         (function(d){
           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

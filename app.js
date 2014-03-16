@@ -41,6 +41,7 @@ app.use(app.router);
 
 app.get('/', routes.index);
 app.get('/success', success.program);
+app.get('/dashboard', dashboard.program);
 app.get('/users', users.list);
 
 /// catch 404 and forwarding to error handler

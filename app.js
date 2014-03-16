@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var graph = require('fbgraph');
  
 var FACEBOOK_APP_ID = '470267856432810';
 var FACEBOOK_APP_SECRET = '60f4d4b4a9aceb3c5ba11d193c3414f6';
@@ -17,6 +18,7 @@ var db = require('./models');
 var routes = require('./routes');
 var users = require('./routes/user');
 var success = require('./routes/success');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -41,6 +43,7 @@ app.use(app.router);
 
 app.get('/', routes.index);
 app.get('/success', success.program);
+app.get('/dashboard', dashboard.program);
 app.get('/users', users.list);
 
 /// catch 404 and forwarding to error handler
@@ -68,6 +71,7 @@ passport.use(new FacebookStrategy({
   clientSecret: FACEBOOK_APP_SECRET,
   callbackURL: 'http://localhost:3000/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
+  graph.setAccessToken(accessToken);	
   process.nextTick(function() {
     //console.log(accessToken);
     //console.log(profile);

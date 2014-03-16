@@ -95,7 +95,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-db.sequelize.sync().complete(function(err) {
+/*db.sequelize.sync().complete(function(err) {
   if (err) {
     throw err;
   } else {
@@ -104,3 +104,4 @@ db.sequelize.sync().complete(function(err) {
     });
   }
 });
+*/

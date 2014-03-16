@@ -98,10 +98,10 @@ app.use(function(err, req, res, next) {
 /*db.sequelize.sync().complete(function(err) {
   if (err) {
     throw err;
-  } else {
+  } else {*/
     http.createServer(app).listen(app.get('port'), function(){
-      debug('Express server listening on port ' + server.address().port);
+      debug('Express server listening on port ' + app.get('port'));
     });
-  }
+  /*}
 });
 */

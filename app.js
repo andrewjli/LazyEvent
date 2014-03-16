@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
+app.use('/static/img/', express.static(__dirname + '/static/img/'));
 
 app.get('/', routes.index);
 app.get('/success', success.program);
@@ -130,4 +131,3 @@ db.sequelize.sync({force: true}).complete(function(err) {
     });
   }
 });
-

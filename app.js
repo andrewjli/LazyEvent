@@ -33,13 +33,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.cookieParser('secret'));
-app.use(express.cookieSession({
-  key: 'cookiekey',
-  secret: 'secret',
-  cookie: {
-    maxAge: 
-  }
-}));
+//app.use(express.session());
 app.use(require('stylus').middleware(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(app.router);

@@ -9,8 +9,8 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
  
-var FACEBOOK_APP_ID = '1471471923068168';
-var FACEBOOK_APP_SECRET = '2e3b7ed934f856c7cbd33d643d3d1e1c';
+var FACEBOOK_APP_ID = '470267856432810';
+var FACEBOOK_APP_SECRET = '60f4d4b4a9aceb3c5ba11d193c3414f6';
 
 var db = require('./models');
 

@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var graph = require('fbgraph');
  
 var FACEBOOK_APP_ID = '470267856432810';
 var FACEBOOK_APP_SECRET = '60f4d4b4a9aceb3c5ba11d193c3414f6';
@@ -66,6 +67,7 @@ passport.use(new FacebookStrategy({
   clientSecret: FACEBOOK_APP_SECRET,
   callbackURL: 'http://lazyevent.herokuapp.com/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
+  graph.setAccessToken(accessToken);	
   process.nextTick(function() {
     //Assuming user exists
     done(null, profile);

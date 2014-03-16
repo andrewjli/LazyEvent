@@ -33,7 +33,8 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(express.cookieParser('secret'));
+//app.use(express.session());
 app.use(require('stylus').middleware(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(app.router);
@@ -78,7 +79,7 @@ passport.use(new FacebookStrategy({
 app.get('/auth/facebook', passport.authenticate('facebook'));
  
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/success',
+  successRedirect: '/',
   failureRedirect: '/error'
 }));
 

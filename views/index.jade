@@ -4,8 +4,14 @@ block content
   .container.theme-showcase
       // Main jumbotron for a primary marketing message or call to action
       .jumbotron
-        h1 Welcome to #{title}!
+        if !loggedIn
+          h1 Welcome to #{title}!
+        else
+          h1 You have succesfully logged in to Facebook!
+
         p
           | Welcome to #{title}! Your Facebook Secretary!
-        p
-          a(href='/auth/facebook').btn.btn-primary.btn-lg Sign in with Facebook »
+
+        if !loggedIn
+          p
+            a(href='/auth/facebook').btn.btn-primary.btn-lg Sign in with Facebook »

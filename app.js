@@ -1,3 +1,4 @@
+var debug = require('debug')('LazyEvent');
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -8,13 +9,17 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
  
-var FACEBOOK_APP_ID = '1471471923068168';
-var FACEBOOK_APP_SECRET = '2e3b7ed934f856c7cbd33d643d3d1e1c';
+var FACEBOOK_APP_ID = '470267856432810';
+var FACEBOOK_APP_SECRET = '60f4d4b4a9aceb3c5ba11d193c3414f6';
+
+var db = require('./models');
 
 var routes = require('./routes');
 var users = require('./routes/user');
 
 var app = express();
+
+app.set('port', process.env.PORT || 3000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -90,4 +95,13 @@ app.use(function(err, req, res, next) {
     });
 });
 
-module.exports = app;
+/*db.sequelize.sync().complete(function(err) {
+  if (err) {
+    throw err;
+  } else {*/
+    http.createServer(app).listen(app.get('port'), function(){
+      debug('Express server listening on port ' + app.get('port'));
+    });
+  /*}
+});
+*/

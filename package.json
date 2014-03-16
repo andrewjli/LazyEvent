@@ -1,9 +1,18 @@
 {
-  "name": "NoteTakr",
+  "name": "LazyEvent",
   "version": "0.0.1",
+  "description": "A tool to make event organisation easier",
   "private": true,
+  "main": "app.js",
   "scripts": {
-    "start": "node start"
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/programMint/LazyEvent.git"
+  },
+  "engines": {
+    "node": "0.10.x"
   },
   "dependencies": {
     "express": "~3.4.8",
@@ -16,6 +25,8 @@
     "stylus": "0.42.3",
     "passport-facebook": "^1.0.3",
     "passport": "^0.2.0",
-    "twilio": "^1.6.0"
+    "twilio": "^1.6.0",
+    "pg": "^2.11.1",
+    "sequelize": "^1.7.0"
   }
 }

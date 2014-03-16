@@ -16,6 +16,7 @@ var db = require('./models');
 
 var routes = require('./routes');
 var users = require('./routes/user');
+var success = require('./routes/success');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(app.router);
 
 app.get('/', routes.index);
+app.get('/success', success.program);
 app.get('/users', users.list);
 
 /// catch 404 and forwarding to error handler
@@ -95,13 +97,13 @@ app.use(function(err, req, res, next) {
     });
 });
 
-/*db.sequelize.sync().complete(function(err) {
+db.sequelize.sync().complete(function(err) {
   if (err) {
     throw err;
-  } else {*/
+  } else {
     http.createServer(app).listen(app.get('port'), function(){
       debug('Express server listening on port ' + app.get('port'));
     });
-  /*}
+  }
 });
-*/
+

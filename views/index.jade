@@ -12,6 +12,24 @@ block content
         p
           | Welcome to #{title}! Your Facebook Secretary!
 
+        ul
+          each user in users
+            li
+              = user.fbuserid
+            li
+              = user.fullname
+            li
+              = user.firstname
+            li
+              = user.surname
+
         if !loggedIn
           p
             a(href='/auth/facebook').btn.btn-primary.btn-lg Sign in with Facebook »
+
+
+block welcome
+  ul.nav.navbar-nav.navbar-right
+    li
+      each user in users
+        a(href='#') Welcome, #{user.fullname}

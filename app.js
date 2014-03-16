@@ -18,6 +18,7 @@ var db = require('./models');
 var routes = require('./routes');
 var users = require('./routes/user');
 var success = require('./routes/success');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
